@@ -36,7 +36,7 @@ Scaffold { paddingValues ->
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.app_logo),
-            contentDescription = stringResource(R.string.logo_content_description),
+            contentDescription = Text(stringResource(R.string.logo_content_description)).toString(),
             modifier = Modifier
                 .size(120.dp)
         )
@@ -59,7 +59,7 @@ Scaffold { paddingValues ->
         OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
-                label = { stringResource((R.string.label_username)) },
+                label = { Text(stringResource(R.string.label_username)) },
                 modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
@@ -80,7 +80,7 @@ Scaffold { paddingValues ->
                         .fillMaxWidth()
                         .height(56.dp)
         ) {
-            stringResource(R.string.button_login)
+            Text(stringResource(R.string.button_login))
         }
     }
 
@@ -92,7 +92,7 @@ Scaffold { paddingValues ->
         Spacer(Modifier.height(4.dp))
 
         TextButton(onClick = onNavigateToSignup) {
-            stringResource(R.string.link_new_user)
+            Text(stringResource(R.string.link_new_user))
         }
     }
 }

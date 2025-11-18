@@ -12,4 +12,8 @@
     <string name="new_user">you\'re new? </string>
     <string name="link_new_user">create your account</string>
     <string name="button_create_account">CREATE AN ACCOUNT</string>
+
+    <string name="label_repeat_password">repeat password</string>
+    <string name="signup_greeting_title">CREATE AN ACCOUNT</string>
+    <string name="signup_link_to_login">Already have an account? Log in</string>
 </resources>
