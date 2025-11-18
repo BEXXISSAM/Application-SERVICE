@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ApplicationService</string>
+    <string name="logo_content_description">Logo de Service</string>
+
+    <string name="login_greeting_title">WELCOME BACK</string>
+    <string name="login_greeting_subtitle">Log in to complete your journey</string>
+
+    <string name="label_username">username</string>
+    <string name="label_password">password</string>
+
+    <string name="button_login">LOG IN</string>
+    <string name="new_user">you\'re new? </string>
+    <string name="link_new_user">create your account</string>
+    <string name="button_create_account">CREATE AN ACCOUNT</string>
 </resources>

@@ -12,17 +12,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.applicationservice.R
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun LogInScreen(
         onLoginClicked: (username: String, password: String) -> Unit,
         onNavigateToSignup: () -> Unit
 ) {
-// Gestion de l'état des champs de saisie
-var username by remember { mutableStateOf("") }
-var password by remember { mutableStateOf("") }
 
-// Utilisation de Scaffold pour la structure de base
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
 Scaffold { paddingValues ->
         Column(
                 modifier = Modifier
@@ -35,8 +35,8 @@ Scaffold { paddingValues ->
         ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
-            painter = painterResource(id = R.drawable.app_logo.png),
-            contentDescription = "Logo de Service",
+            painter = painterResource(id = R.drawable.app_logo),
+            contentDescription = stringResource(R.string.logo_content_description),
             modifier = Modifier
                 .size(120.dp)
         )
@@ -44,12 +44,12 @@ Scaffold { paddingValues ->
         Spacer(Modifier.height(40.dp))
 
         Text(
-                text = "WELCOME BACK",
+                text = stringResource(R.string.login_greeting_title),
                 style = MaterialTheme.typography.headlineMedium
         )
 
         Text(
-                text = "Log in to complete your journey",
+                text = stringResource(R.string.login_greeting_subtitle),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -59,7 +59,7 @@ Scaffold { paddingValues ->
         OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
-                label = { Text("username") },
+                label = { stringResource((R.string.label_username)) },
                 modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
@@ -80,19 +80,19 @@ Scaffold { paddingValues ->
                         .fillMaxWidth()
                         .height(56.dp)
         ) {
-            Text("LOG IN")
+            stringResource(R.string.button_login)
         }
     }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-                text = "you're new?",
+                text = stringResource(R.string.new_user),
                 style = MaterialTheme.typography.bodyMedium
         )
         Spacer(Modifier.height(4.dp))
 
         TextButton(onClick = onNavigateToSignup) {
-            Text("CREATE AN ACCOUNT")
+            stringResource(R.string.link_new_user)
         }
     }
 }
