@@ -1,6 +1,6 @@
 package com.example.applicationservice.users
 
-object userManager{
+object UserManager{
     private val userList = mutableListOf<User>()
 
     fun ajouterUtilisateur(user: User){
