@@ -36,7 +36,11 @@ Scaffold { paddingValues ->
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.app_logo),
+<<<<<<< HEAD
             contentDescription = stringResource(R.string.logo_content_description),
+=======
+            contentDescription = "Logo de Service",
+>>>>>>> 5b262c7fa041c40836bc60aa70f6a5afd630afb1
             modifier = Modifier
                 .size(120.dp)
         )
