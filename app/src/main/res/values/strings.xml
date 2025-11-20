@@ -16,4 +16,11 @@
     <string name="label_repeat_password">repeat password</string>
     <string name="signup_greeting_title">CREATE AN ACCOUNT</string>
     <string name="signup_link_to_login">Already have an account? Log in</string>
+    
+    <string name="product_1">laptop 13 inch</string>
+    <string name="product_2">laptop 14 inch</string>
+    <string name="product_3">laptop 13 in</string>
+    <string name="product_4">Camera</string>
+    <string name="product_5">Pink Headphones</string>
+    <string name="product_6">Black Headphones</string>
 </resources>
