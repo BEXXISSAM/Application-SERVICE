@@ -23,4 +23,9 @@
     <string name="product_4">Camera</string>
     <string name="product_5">Pink Headphones</string>
     <string name="product_6">Black Headphones</string>
+
+    <string name="order">"Ajouter au panier"</string>
+    <string name="top_bar_ap">"Détails du produit"</string>
+    <string name="retour_icon">Retour</string>
+
 </resources>
