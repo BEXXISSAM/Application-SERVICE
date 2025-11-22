@@ -38,6 +38,12 @@ fun AppNavigation() {
     val context = LocalContext.current
     val dataSource = ProductDataSource()
 
+    val handleLogout = {
+        navController.navigate("login_screen") {
+            popUpTo(0) { inclusive = true }
+        }
+    }
+
     NavHost(navController = navController, startDestination = "login_screen") {
 
         composable("login_screen") {
@@ -82,7 +88,8 @@ fun AppNavigation() {
             AllProductsScreen(
                 onProductClick = { product ->
                     navController.navigate("product_detail/${product.nameResId}")
-                }
+                },
+                onLogout = handleLogout
             )
         }
 
@@ -94,7 +101,7 @@ fun AppNavigation() {
             val product = dataSource.loadProducts().find { it.nameResId == productId }
 
             if (product != null) {
-                ProductDetailScreen(navController = navController, product = product)
+                ProductDetailScreen(navController = navController, product = product, onLogout = handleLogout)
             }
         }
 
@@ -106,7 +113,7 @@ fun AppNavigation() {
             val product = dataSource.loadProducts().find { it.nameResId == productId }
 
             if (product != null) {
-                OrderScreen(navController = navController, product = product)
+                OrderScreen(navController = navController, product = product, onLogout = handleLogout)
             }
         }
     }

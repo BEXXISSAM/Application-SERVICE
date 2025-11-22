@@ -46,7 +46,7 @@ fun ServiceTopBar(
                 IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = stringResource(R.string.back_content_desc).toString(),
+                        contentDescription = Text(text =stringResource( R.string.logo_content_description)).toString(),
                         tint = ServiceWhite
                     )
                 }

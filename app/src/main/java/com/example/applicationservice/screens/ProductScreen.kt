@@ -21,33 +21,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.applicationservice.R
+import com.example.applicationservice.components.ServiceTopBar
 import com.example.applicationservice.models.Product
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(
-        navController: NavController,
-        product: Product
+    navController: NavController,
+    product: Product,
+    onLogout: () -> Unit
 ) {
     Scaffold(
-            topBar = {
-                    TopAppBar(
-                            title = { Text(text = stringResource(id = R.string.top_bar_ap)) },
-                            navigationIcon = {
-                                    IconButton(onClick = { navController.popBackStack() }) {
-                                    Icon(
-                                            imageVector = Icons.Default.ArrowBack,
-                                            contentDescription = stringResource(id = R.string.retour_icon)
-                                    )
-                            }
-                            },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                    titleContentColor = MaterialTheme.colorScheme.primary
-                            )
-                    )
-            }
+        topBar = {
+            ServiceTopBar(
+                canNavigateBack = true, 
+                onBackClick = { navController.popBackStack() },
+                onLogoutClick = onLogout
+            )
+        }
     ) { innerPadding ->
             Column(
                     modifier = Modifier

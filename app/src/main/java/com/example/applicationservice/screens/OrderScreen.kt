@@ -39,6 +39,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.applicationservice.R
+import com.example.applicationservice.components.ServiceTopBar
 import com.example.applicationservice.models.Product
 
 
@@ -46,7 +47,8 @@ import com.example.applicationservice.models.Product
 @Composable
 fun OrderScreen(
     navController: NavController,
-    product: Product
+    product: Product,
+    onLogout: () -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
@@ -57,20 +59,10 @@ fun OrderScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.order_screen_title)) },
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.back_content_desc)
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary
-                )
+            ServiceTopBar(
+                canNavigateBack = true,
+                onBackClick = { navController.popBackStack() },
+                onLogoutClick = onLogout
             )
         }
     ) { innerPadding ->
