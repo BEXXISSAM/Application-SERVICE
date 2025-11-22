@@ -1,4 +1,4 @@
-package com.example.applicationservice.screens
+package com.example.applicationservice.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -10,11 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.applicationservice.models.Product
 
 @Composable
@@ -34,12 +37,15 @@ fun ProductCard(product: Product, modifier: Modifier = Modifier) {
                     .height(180.dp)
             ) {
 
-                Image(
-                    painter = painterResource(id = product.imageResId),
+           AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(product.imageResId)
+                        .crossfade(true)
+                        .build(),
                     contentDescription = stringResource(id = product.nameResId),
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
-                )
+           )
 
                 Surface(
                     color = Color.Black.copy(alpha = 0.7f),
