@@ -43,5 +43,7 @@
     <string name="msg_order_validated">Commande validée pour %1$s !</string>
     <string name="err_empty_fields">Veuillez remplir tous les champs</string>
     <string name="back_content_desc">Retour</string>
+    <string name="login_error_message">Identifiants incorrects</string>
+    <string name="signup_success_message">Compte créé avec succès !</string>
 
 </resources>
