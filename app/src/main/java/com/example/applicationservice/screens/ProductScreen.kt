@@ -92,7 +92,7 @@ fun ProductDetailScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             Button(
-                    onClick = { /* Action Ajouter au panier */ },
+                    onClick = { navController.navigate("order_screen/${product.nameResId}") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp)
             ) {
