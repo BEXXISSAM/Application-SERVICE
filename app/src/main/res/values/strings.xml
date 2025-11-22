@@ -28,4 +28,20 @@
     <string name="top_bar_ap">"Détails du produit"</string>
     <string name="retour_icon">Retour</string>
 
+    <string name="order_screen_title">Finaliser la commande</string>
+    <string name="order_summary_title">Récapitulatif</string>
+    <string name="order_form_title">Vos coordonnées</string>
+
+    <string name="label_fullname">Nom complet</string>
+    <string name="label_phone">Téléphone</string>
+    <string name="label_address">Adresse de livraison</string>
+    <string name="label_quantity">Quantité</string>
+
+    <string name="btn_confirm_order">Confirmer la commande</string>
+    <string name="btn_order_now">Commander maintenant</string>
+
+    <string name="msg_order_validated">Commande validée pour %1$s !</string>
+    <string name="err_empty_fields">Veuillez remplir tous les champs</string>
+    <string name="back_content_desc">Retour</string>
+
 </resources>
