@@ -1,10 +1,21 @@
 package com.example.applicationservice.models
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "Products")
 data class Product(
-    @StringRes val nameResId: Int,
-    val price: String,
-    @DrawableRes val imageResId: Int
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ProductId")
+    val id:Int,
+
+    @ColumnInfo(name="ProductName")
+    val name:String,
+
+    @ColumnInfo(name="ProductPrice")
+    val price:Float,
+
+    @ColumnInfo(name = "Description")
+    val description:String
 )
