@@ -1,18 +1,24 @@
 package com.example.applicationservice.repositories
 
-import androidx.lifecycle.LiveData
+import com.example.applicationservice.api.RetrofitInstance
 import com.example.applicationservice.dao.ProductDao
-import com.example.applicationservice.models.Product
-
 class ProductRepository(private val productDao: ProductDao) {
 
-    val allProducts: LiveData<List<Product>> = productDao.getProducts()
+    suspend fun refreshProducts() {
+        try {
+            val response = RetrofitInstance.api.getProducts()
 
-    suspend fun insert(product: Product) {
-        productDao.insertProduct(product)
+            val productList = response.products
+
+            if (productList.isNotEmpty()) {
+                productDao.insertAll(productList)
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
-    suspend fun deleteALL() {
-        productDao.deleteProducts()
-    }
+    fun getAllProductsFromDb() = productDao.getProducts()
+
 }

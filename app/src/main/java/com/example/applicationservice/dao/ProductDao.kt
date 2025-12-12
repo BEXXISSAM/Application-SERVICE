@@ -7,11 +7,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.applicationservice.models.Product
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
     @Query("SELECT * FROM Products ORDER BY ProductPrice ASC")
-    fun getProducts(): LiveData<List<Product>>
+    fun getProducts(): Flow<List<Product>>
 
     @Query("SELECT * FROM Products where ProductId= :pId")
     fun getProduct(pId: Int): Product?
@@ -24,4 +25,7 @@ interface ProductDao {
 
     @Query("DELETE FROM Products")
     suspend fun deleteProducts()
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertAll(products:List<Product>)
 }

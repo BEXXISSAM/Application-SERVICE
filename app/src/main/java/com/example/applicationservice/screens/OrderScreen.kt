@@ -1,42 +1,25 @@
 package com.example.applicationservice.screens
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.example.applicationservice.R
-import com.example.applicationservice.components.ProductCard
 import com.example.applicationservice.components.ServiceTopBar
 import com.example.applicationservice.models.Product
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +58,24 @@ fun OrderScreen(
                 fontWeight = FontWeight.Bold
             )
 
-            ProductCard(product = product)
+            Card(
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                modifier = Modifier.fillMaxWidth().height(100.dp)
+            ) {
+                Row(modifier = Modifier.fillMaxSize().padding(8.dp)) {
+                    AsyncImage(
+                        model = product.imageUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(80.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxHeight()) {
+                        Text(text = product.name, fontWeight = FontWeight.Bold)
+                        Text(text = "${product.price} $", color = MaterialTheme.colorScheme.primary)
+                    }
+                }
+            }
 
             HorizontalDivider()
 
@@ -92,50 +92,34 @@ fun OrderScreen(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
             )
-
+            OutlinedTextField(
+                value = address,
+                onValueChange = { address = it },
+                label = { Text(stringResource(R.string.label_address)) },
+                modifier = Modifier.fillMaxWidth()
+            )
             OutlinedTextField(
                 value = phone,
                 onValueChange = { phone = it },
                 label = { Text(stringResource(R.string.label_phone)) },
                 modifier = Modifier.fillMaxWidth(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                singleLine = true
-            )
-
-            OutlinedTextField(
-                value = address,
-                onValueChange = { address = it },
-                label = { Text(stringResource(R.string.label_address)) },
-                modifier = Modifier.fillMaxWidth(),
-                minLines = 2
-            )
-
-            OutlinedTextField(
-                value = quantity,
-                onValueChange = { if (it.all { char -> char.isDigit() }) quantity = it },
-                label = { Text(stringResource(R.string.label_quantity)) },
-                modifier = Modifier.fillMaxWidth(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                singleLine = true
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
                 onClick = {
-                    if (name.isNotBlank() && address.isNotBlank() && phone.isNotBlank()) {
-                        val successMsg = context.getString(R.string.msg_order_validated, product.price)
+                    if (name.isNotBlank() && address.isNotBlank()) {
+                        // Utilisation du Double directement
+                        val successMsg = "Commande validée pour ${product.price} $"
                         Toast.makeText(context, successMsg, Toast.LENGTH_LONG).show()
-
                         navController.popBackStack("all_products", inclusive = false)
                     } else {
-                        val errorMsg = context.getString(R.string.err_empty_fields)
-                        Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Remplissez les champs", Toast.LENGTH_SHORT).show()
                     }
                 },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
+                modifier = Modifier.fillMaxWidth().height(50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
             ) {
                 Text(stringResource(R.string.btn_confirm_order))
