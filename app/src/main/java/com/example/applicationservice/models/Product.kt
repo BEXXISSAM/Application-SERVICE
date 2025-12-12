@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Products")
 data class Product(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "ProductId")
     val id:Int,
 
@@ -14,8 +14,11 @@ data class Product(
     val name:String,
 
     @ColumnInfo(name="ProductPrice")
-    val price:Float,
+    val price:Double,
 
     @ColumnInfo(name = "Description")
-    val description:String
+    val description:String,
+
+    @ColumnInfo(name = "ImageUrl")
+    val imageUrl: String
 )
