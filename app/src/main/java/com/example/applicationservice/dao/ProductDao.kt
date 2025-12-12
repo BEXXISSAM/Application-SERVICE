@@ -17,7 +17,7 @@ interface ProductDao {
     fun getProduct(pId: Int): Product?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE) // Ignorer l'insertion des products déjà existés
-    suspend fun insertProduct(product:Product)
+    fun insertProduct(product:Product)
 
     @Update
     suspend fun updateProduct(product: Product)
